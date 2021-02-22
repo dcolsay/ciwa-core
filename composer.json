@@ -1,0 +1,62 @@
+{
+    "name": "dcolsay/ciwa",
+    "description": "Core of CIWA",
+    "keywords": [
+        "dcolsay",
+        "core"
+    ],
+    "homepage": "https://github.com/dcolsay/ciwa-core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Boris DEHOUMON",
+            "email": "borisdehoumon@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "spatie/laravel-package-tools": "^1.1",
+        "illuminate/contracts": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3",
+        "spatie/laravel-ray": "^1.9",
+        "vimeo/psalm": "^4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcolsay\\Ciwa\\": "src",
+            "Dcolsay\\Ciwa\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dcolsay\\Ciwa\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Dcolsay\\Ciwa\\CiwaServiceProvider"
+            ],
+            "aliases": {
+                "Ciwa": "Dcolsay\\Ciwa\\CiwaFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
