@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcolsay\Ciwa\Identifier;
+namespace Dcolsay\Ciwa;
 
 class Identifier
 {
