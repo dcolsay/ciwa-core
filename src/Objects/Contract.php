@@ -32,8 +32,21 @@ class Contract extends Model implements Castable
         return new static($data);
     }
 
+    public static function fromArray(array $attributes): self
+    {
+        return new self([
+            'type' => $attributes['ClientType'],
+            'ContractCode' => $attributes['ContractCode'],
+            'ContractData' => ContractDataModel::makeFromGenerator($attributes),
+            'Individual' => IndividualModel::makeFromGenerator($attributes),
+            'Company' => CompanyModel::makeFromGenerator($attributes),
+            'Collateral' => CollateralModel::makeFromGenerator($attributes)
+        ]);
+    }
+
     public function toArray()
     {
+        dd($this->ContractData);
         $value =  [
             'ContractCode' => $this->ContractCode,
             'ContractData' => ContractDataModel::makeArraySort($this->ContractData)

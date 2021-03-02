@@ -26,6 +26,11 @@ class BatchWriter
         ];
     }
 
+    public function make()
+    {
+        
+    }
+
     public function createFile($data)
     {
         $arrayToXml = new ArrayToXml($data, $this->rootElement());

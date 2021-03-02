@@ -16,6 +16,10 @@ class FileHeadingsRepository
 
     protected $rows;
 
+    protected $key = '';
+
+    protected $value = '';
+
     public function __construct($path)
     {
         $this->loadFile($path);
@@ -30,7 +34,8 @@ class FileHeadingsRepository
 
     protected function headers()
     {
-        return $this->rows->pluck('field', 'key');
+        return $this->rows->pluck('output', 'input');
+        // return $this->rows->pluck('field', 'key');
     }
 
     public function values()

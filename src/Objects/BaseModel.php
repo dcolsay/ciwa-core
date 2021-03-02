@@ -2,6 +2,7 @@
 
 namespace Dcolsay\Ciwa\Objects;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Jenssegers\Model\Model;
 use ACFBentveld\XML\Data\XMLElement;
@@ -53,6 +54,14 @@ class BaseModel extends Model
             ->getRows();
     }
 
+    public function fields()
+    {
+        return $this
+            ->getSettings()
+            ->map(fn($properties) => $properties[0])
+            ->toArray();
+    }
+
     public static function makeArraySort($attributes): array
     {
         // @see https://stackoverflow.com/questions/2726487/simplexmlelement-to-php-array
@@ -99,6 +108,18 @@ class BaseModel extends Model
 
     public static function makeFromGenerator($attributes)
     {
+        $out = new static;
+
+        $fill = collect($attributes)
+            ->only(array_keys($out->getSorter()))
+            ->toArray();
+
+        return self::makeArraySort($fill);
+    }
+
+    public static function fromArray($attributes)
+    {
+        // return Arr::only($data, (new static)->fields());
         $out = new static;
 
         $fill = collect($attributes)

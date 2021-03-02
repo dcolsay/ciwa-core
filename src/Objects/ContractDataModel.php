@@ -2,6 +2,7 @@
 
 namespace Dcolsay\Ciwa\Objects;
 
+use Illuminate\Support\Arr;
 use Dcolsay\Ciwa\Objects\BaseModel;
 
 class ContractDataModel extends BaseModel
