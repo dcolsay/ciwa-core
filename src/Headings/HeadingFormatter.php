@@ -2,6 +2,7 @@
 
 namespace Dcolsay\Ciwa\Headings;
 
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class HeadingFormatter
@@ -13,14 +14,13 @@ class HeadingFormatter
 
     public static function format(string $key)
     {
-        // dd($key);
-        // $path = Storage::path('settings\header-cceibank.csv');
-        $path = Storage::path('settings\header-uba.csv');
+        $path = Storage::path('settings\header-cbi.csv');
+        // $path = Storage::path('settings\header-uba.csv');
+        
         if(blank($key))
-            dd($key);
+            throw new Exception('Key can not null');
 
         $ciwaHeader = new FileHeadingsRepository($path);
-        // dd($ciwaHeader->search($key));
         return $ciwaHeader->search($key);
     }
 }

@@ -34,8 +34,8 @@ class FileHeadingsRepository
 
     protected function headers()
     {
-        return $this->rows->pluck('output', 'input');
-        // return $this->rows->pluck('field', 'key');
+        // return $this->rows->pluck('output', 'input');
+        return $this->rows->pluck('field', 'key');
     }
 
     public function values()

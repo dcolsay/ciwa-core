@@ -68,7 +68,6 @@ class BatchParser
 
     public function saveXML()
     {
-        // dd($this->presentToXml());
         $xmlWriter = new BatchWriter();
         $xmlWriter->saveXML($this->presentToXml());
         // $xmlWriter->zip($this->getBatchIdentifier());
