@@ -39,6 +39,7 @@ class FileSorter
             // ->mapWithKeys(fn($value, $key) => [intval($key) => $value])
             ->sortKeys()
             ->toArray();
+        
         $order = array_intersect($sorter, $keys);
 
         //  @see https://www.designcise.com/web/tutorial/how-to-sort-an-array-by-keys-based-on-order-in-a-secondary-array-in-php
