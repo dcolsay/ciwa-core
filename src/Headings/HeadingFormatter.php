@@ -14,11 +14,11 @@ class HeadingFormatter
 
     public static function format(string $key)
     {
+        if(blank($key))
+            return; 
+        
         $path = Storage::path('settings\header-ebj.csv');
         // $path = Storage::path('settings\header-uba.csv');
-        
-        if(blank($key))
-            throw new Exception('Key can not null');
 
         $ciwaHeader = new FileHeadingsRepository($path);
         return $ciwaHeader->search($key);
