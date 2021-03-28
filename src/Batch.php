@@ -18,6 +18,21 @@ class Batch
         $this->path = $filePath;
     }
 
+    public static function make(): self
+    {
+        return new static('');
+    }
+
+    public static function makeFromFile($path)
+    {
+        
+    }
+
+    public static function writeFromModel($contracts)
+    {
+        
+    }
+
     /**
      * Récupération du BatchIdentifier
      *
