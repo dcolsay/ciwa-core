@@ -24,7 +24,40 @@ class Contract extends Model
         // @todo Mettre cette variable dans un variable de configuration
         $basePath = Storage::path('settings\tpl');
 
-        return collect($this->attributesToArray())
+        
+        // Ordonner les clés
+        $keys = array_keys($this->attributesToArray());
+        $orders = ['ContractCode', 'ContractData', 'Collateral', 'Company', 'Individual', 'SubjectRole', 'SubjectRelation'];
+        $keyOrder = array_intersect ($orders, $keys);
+        $data = array_merge(array_flip($keyOrder), $this->attributesToArray());
+
+        // Correction en cas de BIC
+        if($format == 'bic')
+            {
+                if(Arr::exists($data, 'Individual')) {
+                    if(Arr::exists($data['Individual'], 'PhoneNumber')){
+                       $phoneNumber = $data['Individual']['PhoneNumber'];
+                       unset($data['Individual']['PhoneNumber']);
+                       $data['Individual']['Contacts'] = array_merge($data['Individual']['Contacts'], ['PhoneNumber' => $phoneNumber] );
+                    }
+                }
+
+                if(Arr::exists($data, 'ContractData')) {
+
+                    if(Arr::exists($data['ContractData'], 'BelongsToGroup')){
+                        $data['ContractData'] = collect($data['ContractData'])->mapWithKeys(function($value, $key) {
+
+                            if($key == 'BelongsToGroup')
+                                $key = 'RelatedCustomersGroup';
+
+                            return [$key => $value];
+                        })->toArray();
+                    }
+                }
+
+            }
+    
+        return collect($data)
             ->map(function($attribute, $key) use ($basePath, $format){
                 $key = Str::of($key);
                 if($key->contains('ContractCode') || $key->contains('SubjectRole') || $key->contains('SubjectRelation') )

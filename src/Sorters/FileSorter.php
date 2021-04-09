@@ -8,7 +8,7 @@ use Illuminate\Support\LazyCollection;
 class FileSorter
 {
     use HandleFile;
-    
+
     protected LazyCollection $rows;
 
     protected $field = 'field';
@@ -34,12 +34,13 @@ class FileSorter
     public function order($data)
     {
         $keys = array_keys($data);
+
         $sorter = $this->rows
             ->pluck($this->field, $this->position)
             // ->mapWithKeys(fn($value, $key) => [intval($key) => $value])
             ->sortKeys()
             ->toArray();
-        
+
         $order = array_intersect($sorter, $keys);
 
         //  @see https://www.designcise.com/web/tutorial/how-to-sort-an-array-by-keys-based-on-order-in-a-secondary-array-in-php
@@ -53,7 +54,7 @@ class FileSorter
 
         if(!$this->rows->contains($this->field, $field))
             return $this->rows->count() + 1;
-        
+
             // dd($this->rows->firstWhere($this->field, $field));
         // dd(intval($this->rows->firstWhere($this->field, $field)[$this->position]));
 

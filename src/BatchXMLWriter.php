@@ -10,7 +10,7 @@ class BatchXMLWriter extends XMLWriter
     public function __construct($filePath)
     {
         $this->openUri($filePath);
-        $this->startDocument('1.0', 'UTF-8');
+        // $this->startDocument('1.0', 'UTF-8');
         $this->startElement('Batch');
         $this->setIndent(true);
         //Write Root Element
