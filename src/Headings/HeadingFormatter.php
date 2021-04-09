@@ -4,23 +4,23 @@ namespace Dcolsay\Ciwa\Headings;
 
 use Exception;
 use Illuminate\Support\Facades\Storage;
+use Dcolsay\Ciwa\Headings\HeadingsRepository;
 
 class HeadingFormatter
 {
     public function __invoke(string $key)
     {
-        dd($key);
+        return app(HeadingsRepository::class)->get($key);
     }
 
-    public static function format(string $key)
-    {
-        if(blank($key))
-            return; 
-        
-        $path = Storage::path('settings\header-ebj.csv');
-        // $path = Storage::path('settings\header-uba.csv');
+     // HeadingRowFormatter::extend('ciwa', function($value) {
+        //     dd($value);
+        //     $value = Str::lower($value)
 
-        $ciwaHeader = new FileHeadingsRepository($path);
-        return $ciwaHeader->search($key);
-    }
+        //     $value = (Arr::exists($headings, $value))
+        //          ? $headings[$value]
+        //          : $value;
+
+        //     return $value;
+        // });
 }

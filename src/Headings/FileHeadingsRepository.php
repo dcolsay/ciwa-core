@@ -8,7 +8,7 @@ use Spatie\SimpleExcel\SimpleExcelReader;
 use Dcolsay\Ciwa\Headings\HeadingsRepository;
 use Illuminate\Support\LazyCollection;
 
-class FileHeadingsRepository
+class FileHeadingsRepository implements HeadingsRepository
 {
     protected $items;
 
@@ -60,6 +60,9 @@ class FileHeadingsRepository
 
         return $rows->get($localKey);
     }
-}
 
-// Ouvrir le fichier et mettre le contenu dans un tableau
+    public function get($value): string
+    {
+        return $this->search($value);
+    }
+}
