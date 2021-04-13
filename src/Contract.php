@@ -79,7 +79,6 @@ class Contract extends Model
     {
         $keys = array_keys($this->attributesToArray());
         $orders = config('ciwa.contract.keys');
-        // dd($this->sortByArray($this->attributesToArray(), $orders));
         $keyOrder = array_intersect ($orders, $keys);
         return array_merge(array_flip($keyOrder), $this->attributesToArray());
     }
