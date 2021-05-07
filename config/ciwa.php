@@ -504,6 +504,14 @@ return [
                     'belongs_to_group',
                     'belongs_to_group_name',
                 ],
+
+                'collateral' => [
+                    'collateral_code',
+                    'collateral_type',
+                    'collateral_description',
+                    'collateral_value',
+                    'valuation_date',
+                ],
     
                 'individual' => [
                     'customer_code',
@@ -568,6 +576,11 @@ return [
                     'mobile_phone',
                     'fixed_line',
                     'email',
+                ],
+
+                'subject_role' => [
+                    'customer_code',
+                    'role_of_customer'
                 ]
             ],
         ],

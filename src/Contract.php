@@ -25,6 +25,7 @@ class Contract extends Model
         // Ordonner les clés principals
         $data = $this->sortByArray($this->attributesToArray(), config('ciwa.contract.keys'));
 
+        
         // Correction en cas de BIC
         if($format == 'bic')
             {
@@ -53,7 +54,12 @@ class Contract extends Model
     
         return collect($data)
             ->map(function($attribute, $key) use ($format){
+                
+                if(blank($attribute))
+                    return;
+                
                 $key = Str::of($key);
+                
                 if($key->contains('ContractCode') || $key->contains('SubjectRole') || $key->contains('SubjectRelation') )
                     return $attribute;
                 
